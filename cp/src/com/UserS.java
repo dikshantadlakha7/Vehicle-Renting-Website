@@ -1,7 +1,9 @@
 package com;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,6 +20,8 @@ public class UserS extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
+		Dao d=new Dao();
+		PrintWriter out=response.getWriter();
 		response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
 		response.setHeader("pragma", "no-cache");
 		response.setHeader("Expires", "0");
@@ -25,14 +29,34 @@ public class UserS extends HttpServlet {
 		{
 			response.sendRedirect("userlogin.jsp");
 		}
+		
+		String i=request.getParameter("val");
+	    if(i!=null)
+	    {
+	    	ArrayList<Getter> li=d.searchsecond(i);
+	    	  Iterator itr=li.iterator();  
+	    for(Getter g:li)
+	    {
+	       out.println(g.getPname());
+	    }
+	    	
+	    }
+	    else
+	    {
+	    	out.println(" ");
+	    }
+		
 		String pname=request.getParameter("sear");
-		Dao d=new Dao();
+		
+		if(pname!=null)
+		{
 		HttpSession ses=request.getSession();
 		ses.setAttribute("pro", pname);
 		ArrayList<Getter> li=d.searchsecond(pname);
 		request.setAttribute("search", li);
 		   RequestDispatcher rd=request.getRequestDispatcher("searching.jsp");
 		   rd.forward(request, response);
+	}
 	}
 
 }

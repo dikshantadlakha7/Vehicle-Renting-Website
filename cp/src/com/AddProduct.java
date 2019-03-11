@@ -54,8 +54,8 @@ public class AddProduct extends HttpServlet {
 	  
 	  String qty=request.getParameter("qt");
 	  
-	  String savePath = "C:\\Users\\Dikshant\\eclipse-workspace\\cp\\WebContent\\image";
-	  String savepath1= "C:\\Users\\Dikshant\\eclipse-workspace\\cp\\WebContent";
+	  String savePath = "C:\\Users\\Dikshant\\git\\Vehicle-Renting-Website\\cp\\WebContent\\image";
+	  String savepath1= "C:\\Users\\Dikshant\\git\\Vehicle-Renting-Website\\cp\\WebContent";
 	  System.out.println("hiiiiii7");
 		String fileName="";
 		  System.out.println("hiiiiii8");

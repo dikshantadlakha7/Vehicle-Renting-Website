@@ -105,11 +105,43 @@
     <url-pattern>/UserFilter</url-pattern>
   </servlet-mapping>
   <servlet>
-  <servlet-name>N</servlet-name>
-  <servlet-class>com.Addcart</servlet-class>
+    <servlet-name>N</servlet-name>
+    <servlet-class>com.Addcart</servlet-class>
   </servlet>
   <servlet-mapping>
-  <servlet-name>N</servlet-name>
-  <url-pattern>/Addcart</url-pattern>
+    <servlet-name>N</servlet-name>
+    <url-pattern>/Addcart</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>O</servlet-name>
+    <servlet-class>com.GoCart</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>O</servlet-name>
+    <url-pattern>/GoCart</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>P</servlet-name>
+    <servlet-class>com.New</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>P</servlet-name>
+    <url-pattern>/New</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Q</servlet-name>
+    <servlet-class>com.Cbuy</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Q</servlet-name>
+    <url-pattern>/Cbuy</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>R</servlet-name>
+    <servlet-class>com.Cdelete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>R</servlet-name>
+    <url-pattern>/Cdelete</url-pattern>
   </servlet-mapping>
 </web-app>

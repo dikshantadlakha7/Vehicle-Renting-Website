@@ -12,7 +12,7 @@
 <input type="text" name="sear">
 <input type="submit" value="search">
 </form>
-<c:forEach var="x" items="${detail}">
+<c:forEach var="x" items="${sessionScope.detail}">
 <table>
 <img alt="hii" style="width:50px;height:120px;" src="${x.fileName}">
 <tr><td>${x.pid}</td></tr>
@@ -22,6 +22,8 @@
 </table>
 </c:forEach>
 <c:forEach var="x" items="${detail}">
+
+
 <form action="Addcart" method="get">
 days    <input type="range" name="max" min="0" max="${x.maxd}" required="required"><br>
 <br>

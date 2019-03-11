@@ -31,7 +31,7 @@ public class Show extends HttpServlet {
 	    ses.setAttribute("cc", fileName);
 	   Dao d=new Dao();
 	   ArrayList<Getter> li=d.showp(pid);
-		request.setAttribute("detail", li);
+		ses.setAttribute("detail", li);
 	   RequestDispatcher rd=request.getRequestDispatcher("showproduct.jsp");
 	   rd.forward(request, response);
 	

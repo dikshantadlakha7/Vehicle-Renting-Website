@@ -21,7 +21,7 @@ url="jdbc:mysql://localhost:3306/college" user="root" password="12345" />
 </s:query>
 <table>
 <c:forEach var="x" items="${rs.rows}">
-<tr><td><img alt="hii" src="${x.fileName}"style="width:50px;height:120px;"><td>${x.pid}</td><td>${x.pname}</td></td>
+<tr><td><img alt="hii" src="${x.fileName}" style="width:50px;height:120px;"><td>${x.pid}</td><td>${x.pname}</td>
 <td>${x.milege}</td><td>${x.price}</td><td>${x.maxd}</td><td>${x.qty}</td><td><a href='delete.jsp?u=${x.pid }'>remove</a>
 </td><td><a href='update.jsp?u=${x.pid}&v=${x.pname}&w=${x.milege}&x=${x.price}&y=${x.maxd}&z=${x.fileName}&a=${x.qty}'>update</a></td>
 </c:forEach>

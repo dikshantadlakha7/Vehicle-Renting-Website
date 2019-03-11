@@ -3,6 +3,7 @@ package com;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,43 +16,79 @@ public class Addcart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession ses=request.getSession();
-		System.out.println("hhii1");
+		Dao d=new Dao();
 		String userid=(String) ses.getAttribute("userid");
-		System.out.println(userid);
 		String pid=(String) ses.getAttribute("pp");
-		System.out.println(pid);
 		String pname=(String) ses.getAttribute("rr");
-		System.out.println(pname);
 		String milege=(String) ses.getAttribute("ii");
-		System.out.println(milege);
 		String p=(String) ses.getAttribute("nn");
 		int price=Integer.parseInt(p);
-		System.out.println(price);
 		String fileName=(String) ses.getAttribute("cc");
 		int maxd=Integer.parseInt(request.getParameter("max"));
-		int  qty=Integer.parseInt(request.getParameter("qt"));
-	PrintWriter out=response.getWriter();
-	String str=request.getParameter("b1");
-	Dao d=new Dao();
-
-	//out.println(a);
+		int qty=Integer.parseInt(request.getParameter("qt"));
+	 ses.setAttribute("ma",maxd);
+    ses.setAttribute("qt",qty);
+		int pi=Integer.parseInt(pid);
+ 		int chd=d.check(pi,pname);
+		int qt=d.qtcheck(pi);
+		int cartqt=d.usercart(userid, pid);
+		PrintWriter out=response.getWriter();
+		String str=request.getParameter("b1");
+        int total=qty+cartqt;
   if(str.equals("cart"))
   {
-	  if(d.cart(userid, pid, pname, milege, price, maxd, fileName, qty))
+	  if(d.idcheck(userid, pid))
+	  { 
+	  if(total<=qt)
 	  {
-	 
-		  out.println("hello");
+		  if(d.updatecart(userid, pid, total))
+		  {
+			  RequestDispatcher rd=request.getRequestDispatcher("showproduct.jsp");
+			  out.println("added");
+			  rd.include(request,response);
+		  }
+		  
 	  }
 	  else
 	  {
-		  out.println("byee");
+		  RequestDispatcher rd=request.getRequestDispatcher("showproduct.jsp");
+		  out.println("plz reduce the quantity");
+		  rd.include(request, response); 
 	  }
+	  }
+	  else if(total<=qt)
+	  {
+	  
+	  if(d.cart(userid, pid, pname, milege, price, maxd, fileName, qty))
+	  {
 	 
+		  RequestDispatcher rd=request.getRequestDispatcher("showproduct.jsp");
+		  out.println("added");
+		  rd.include(request,response);
+	  }
+	  else
+	  {
+		  RequestDispatcher rd=request.getRequestDispatcher("showproduct.jsp");
+		  out.println("not added");
+		  rd.include(request,response);
+	  }
+	  } 
+	  else
+	  {
+		  RequestDispatcher rd=request.getRequestDispatcher("showproduct");
+		  out.println("plz reduce limit");
+		  rd.include(request, response);
+	  }
+		
   }
-  else if(str.equals("Book"))
-	
+  
+   if(str.equals("Book"))
   {
-	  out.println("byeee");
+	   
+	   
+	  RequestDispatcher rd=request.getRequestDispatcher("newdetail.jsp");
+	  out.println("plz fill this");
+	  rd.include(request, response);
   }
 	}
 
