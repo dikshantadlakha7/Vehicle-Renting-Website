@@ -22,7 +22,7 @@ public class GoCart extends HttpServlet {
     String userid=(String) ses.getAttribute("userid");
  System.out.println(userid);
     ArrayList<Get> li=d.gocart(userid);
-	ses.setAttribute("items",li);
+	ses.setAttribute("item",li);
 	System.out.println("hahahahahhaha");
 	RequestDispatcher rd=request.getRequestDispatcher("cartopen.jsp");
 	rd.forward(request, response);

@@ -8,8 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+<a href="test.jsp"><input type="button" value="home"></a>
 <table>
-<c:forEach var="x" items="${sessionScope.items}">
+<c:forEach var="x" items="${sessionScope.item}">
 <tr>
 <td><img alt="hii" style="width:50px;height:120px;" src="${x.fileName}"></td>
 <td>${x.pname}</td>

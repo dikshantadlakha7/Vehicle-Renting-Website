@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 public class Update extends HttpServlet {
@@ -23,7 +24,15 @@ public class Update extends HttpServlet {
 		  String milege=request.getParameter("ml1");
 		  String price=request.getParameter("pr");
 		  String qty=request.getParameter("qt");
-		 
+		  HttpSession ses=request.getSession();
+		   response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+		   response.setHeader("Progress", "no-cache");
+		   response.setHeader("Expires", "0");
+			if(ses.getAttribute("login")==null)
+			{
+				RequestDispatcher rs=request.getRequestDispatcher("adminlogin.html");
+				 rs.forward(request, response);
+			}
 if(d.update(pid, pname, milege, price,qty))
 {
 	RequestDispatcher rd=request.getRequestDispatcher("edit.jsp");

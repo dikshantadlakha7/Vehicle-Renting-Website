@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 public class AdminLogin extends HttpServlet {
@@ -22,8 +23,10 @@ public class AdminLogin extends HttpServlet {
 		if(d.adminlog(id, password))
 			
 		{
-		 RequestDispatcher rd=request.getRequestDispatcher("edit.jsp");
-		 rd.forward(request, response);
+			HttpSession ses=request.getSession();
+		   ses.setAttribute("login",id);
+		   RequestDispatcher rd=request.getRequestDispatcher("edit.jsp");
+		    rd.forward(request, response);
 		}
 		else
 		{

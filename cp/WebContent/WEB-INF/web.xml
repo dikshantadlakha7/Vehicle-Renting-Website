@@ -144,4 +144,25 @@
     <servlet-name>R</servlet-name>
     <url-pattern>/Cdelete</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>S</servlet-name>
+    <servlet-class>com.Count</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>S</servlet-name>
+    <url-pattern>/Count</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  <servlet-name>T</servlet-name>
+  <servlet-class>com.LogoutAdmin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>T</servlet-name>
+  <url-pattern>/LogoutAdmin</url-pattern>
+  
+  </servlet-mapping>
+  
+  
+  
+  
 </web-app>

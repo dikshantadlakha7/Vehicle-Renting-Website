@@ -24,7 +24,8 @@ public class User extends HttpServlet {
 	    String nick =request.getParameter("nick1");
 	    if(d.adduser(id, name, password, mail, address,nick))
 	    {
-	    RequestDispatcher rd=request.getRequestDispatcher("user.html");
+	    	System.out.println("aaa gayabahauuya");
+	    RequestDispatcher rd=request.getRequestDispatcher("userlogin.jsp");
 	    rd.forward(request, response);
 	    }
 	    else

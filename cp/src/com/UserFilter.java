@@ -24,8 +24,8 @@ public class UserFilter extends HttpServlet {
 	    HttpSession sess=request.getSession();
 	    sess.setAttribute("pr",price);
 		   ArrayList<Getter> li=d.searchfilter(pname, price);
-			request.setAttribute("items", li);
-		   RequestDispatcher rd=request.getRequestDispatcher("test.jsp");
+			sess.setAttribute("it", li);
+		   RequestDispatcher rd=request.getRequestDispatcher("emergency.jsp");
 		   rd.forward(request, response);
 		   
 	}

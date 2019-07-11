@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<a href="edit.jsp"><input type="button" value="home"></a>
 <form action="admsearch.jsp" >
 <input type="text" placeholder="search items" name="ser">
 <input type="submit" value="search">

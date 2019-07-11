@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 
@@ -42,6 +43,12 @@ public class AddProduct extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Dao da=new Dao();
 	
+		   HttpSession ses=request.getSession();
+			if(ses.getAttribute("login")==null)
+			{
+				RequestDispatcher rs=request.getRequestDispatcher("adminlogin.html");
+				 rs.forward(request, response);
+			}
 		int pid=Integer.parseInt(request.getParameter("pr1"));
 		
 	  String pname=request.getParameter("pname");

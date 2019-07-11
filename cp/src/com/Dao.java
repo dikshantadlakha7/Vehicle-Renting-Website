@@ -38,7 +38,7 @@ public boolean adduser(int id,String name,String password,String mail,String add
 		ps.setString(6, nick);
 		int a=ps.executeUpdate();
 		if(a>0)
-		{
+		{			
 			res=true;
 		}
 		else
@@ -187,6 +187,25 @@ public String userforget(int id,String nick)
 	{
 		boolean res = false;
 		try {
+			PreparedStatement ps1=con.prepareStatement("insert into backup values(?,?,?,?,?,?,?)");
+			ps1.setInt(1, pid);
+			ps1.setString(2, pname);
+			ps1.setString(3, milege);
+			ps1.setString(4,  price);
+			ps1.setString(5, maxd);
+            ps1.setString(6, fileName);
+            ps1.setString(7, qty);
+			int b=ps1.executeUpdate();
+			if(b>0)
+			{
+				System.out.println("added");
+			}
+			else
+			{
+				System.out.println("not added");
+			}
+			
+			
 			PreparedStatement ps=con.prepareStatement("insert into product values(?,?,?,?,?,?,?)");
 			ps.setInt(1, pid);
 			ps.setString(2, pname);
@@ -198,6 +217,7 @@ public String userforget(int id,String nick)
 			int a=ps.executeUpdate();
 			if(a>0)
 			{
+		
 				res=true;
 			}
 			else
@@ -218,22 +238,37 @@ public String userforget(int id,String nick)
 	{
 		boolean res = false;
 		try {
+			String g=Integer.toString(pid);
+			PreparedStatement ps1=con.prepareStatement("delete from cart where pid=?");
+			
+			ps1.setString(1, g);
+			
+		    int w=ps1.executeUpdate();
+			if(w>0)
+			{
+				System.out.println("dsds");
+			}
+			
 			System.out.println("hiiii");
 			PreparedStatement ps=con.prepareStatement("delete from product where pid=?");
 			ps.setInt(1, pid);
 			int a=ps.executeUpdate();
-			{
-				
+		
+				System.out.println("change in String dfsdffsdfsfs"+g);
 				if(a>0)
 				{
-					res=true;
+					
+				
+				   res=true;
+	
 				}
+				
 				else
 				{
 					res=false;
 				}
-			}
-		} catch (SQLException e) {
+		}
+			 catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -649,10 +684,25 @@ PreparedStatement ps=con.prepareStatement("insert into cart(userid,pid,pname,mil
 	
 	public boolean finalybuy(String userid,String username,String phone,String email,String address,String pid,String pname,String milege,int price,int maxd,String fileName,int qty,String date)
 	{
-		System.out.println(date);
-		System.out.println(milege);
+		int count = 0;
+		int y=qty*maxd*price;
 		boolean b=false;
+ 
+   
+		
 		try {
+	 PreparedStatement ps1=con.prepareStatement("select * from product where pid=?");
+	 int a1=Integer.parseInt(pid);
+	 ps1.setInt(1, a1);
+	 ResultSet rs=ps1.executeQuery();
+	if(rs.next())
+	{
+		
+		count=Integer.parseInt(rs.getString(7));
+		
+	}
+			  
+	  
 		PreparedStatement ps=con.prepareStatement("insert into buy(userid,username,phone,email,address,pid,pname,milege,price,maxd,fileName,qty,status,date) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 	   ps.setString(1, userid);
 	   ps.setString(2,username);
@@ -663,8 +713,8 @@ PreparedStatement ps=con.prepareStatement("insert into cart(userid,pid,pname,mil
 	   ps.setString(7, pname);
 	   ps.setString(8, milege);
 	   System.out.println(milege);
-	   ps.setInt(9, price);
-	   System.out.println(price);
+	   ps.setInt(9, y);
+	   System.out.println(y);
 	   ps.setInt(10, maxd);
 	   System.out.println(maxd);
 	   ps.setString(11, fileName);
@@ -677,7 +727,18 @@ PreparedStatement ps=con.prepareStatement("insert into cart(userid,pid,pname,mil
 	   System.out.println("kuch ni rakha");
 	   if(a>0)
 	   {
-		   b=true;
+		   System.out.println("value of count is"+count+" and qty is"+qty);
+		 int finalcount=count-qty;
+		 System.out.println("final count "+finalcount);
+           PreparedStatement ps2=con.prepareStatement("update product set qty=? where pid=?");
+           ps2.setInt(1, finalcount);
+           ps2.setString(2, pid);
+           int t=ps2.executeUpdate();
+           if(t>0)
+           {
+        	   b=true;
+           }
+		   
 	   }
 	   else
 	   {
@@ -716,17 +777,12 @@ PreparedStatement ps=con.prepareStatement("insert into cart(userid,pid,pname,mil
 	
 	
 	
-	
-	
-	
-
-	public ArrayList<Get> prevdetails(String userid)
+	public ArrayList<Get> checkbookings()
 	{
 	ArrayList<Get> li=new ArrayList<Get>();
 	Get g=null;
 	try {
-		PreparedStatement ps=con.prepareStatement("select * from buy where userid=?");
-		ps.setString(1,userid);
+		PreparedStatement ps=con.prepareStatement("select * from buy");
 		ResultSet rs=ps.executeQuery();
 		while(rs.next())
 		{
@@ -736,8 +792,15 @@ PreparedStatement ps=con.prepareStatement("insert into cart(userid,pid,pname,mil
             g.setPhone(rs.getString(4));
             g.setEmail(rs.getString(5));
             g.setAddress(rs.getString(6));
+            g.setFileName(rs.getString(12));
+            g.setPname(rs.getString(8));
+            g.setQty(rs.getInt(13));
+            g.setMaxd(rs.getInt(11));
+            g.setDate(rs.getString(15));
+            g.setPrice(rs.getInt(10));
+            g.setMilege(rs.getString(9));
 			li.add(g);
-			System.out.println("cartttttttttt");
+		
 			}
 		
 	} catch (SQLException e) {
@@ -748,5 +811,7 @@ PreparedStatement ps=con.prepareStatement("insert into cart(userid,pid,pname,mil
 	}
 	
 	
+
 	
+
 }

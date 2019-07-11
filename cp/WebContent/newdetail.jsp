@@ -7,11 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>for previous details click on previous details</h1>
-<a href="Prev"><input type="button" value="previous details"></a>
-<br>
-<br>
-<br>
+<a href="test.jsp"><input type="button" value="home"></a>
 
 <form action="New" method="Get"> 
 user id<input type="text" name="t1" readonly="readonly" value="${sessionScope.userid}"><br>

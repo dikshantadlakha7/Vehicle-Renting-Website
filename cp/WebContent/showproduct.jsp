@@ -8,13 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+<a href="test.jsp"><input type="button" value="home"></a>
 <form action="UserS" method="get">
 <input type="text" name="sear">
 <input type="submit" value="search">
 </form>
 <c:forEach var="x" items="${sessionScope.detail}">
 <table>
-<img alt="hii" style="width:50px;height:120px;" src="${x.fileName}">
+<img alt="hii" style="width:200px;height:150px;" src="${x.fileName}">
 <tr><td>${x.pid}</td></tr>
 <tr><td>name: ${x.pname}</td></tr>
 <tr><td>price: ${x.price} per day</td></tr>

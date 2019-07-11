@@ -31,7 +31,10 @@ public class UserS extends HttpServlet {
 		}
 		
 		String i=request.getParameter("val");
-	    if(i!=null)
+		if(i==null || i.trim().equals("")){  
+			out.print("");  
+			}
+		else if(i!=null)
 	    {
 	    	ArrayList<Getter> li=d.searchsecond(i);
 	    	  Iterator itr=li.iterator();  

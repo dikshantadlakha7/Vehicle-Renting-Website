@@ -7,7 +7,9 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
+
 <body>
+<a href="test.jsp"><input type="button" value="home"></a>
 <form action="UserFilter" method="get">
 <input type="hidden" name="fil" value="${sessionScope.pro}">
 <input type="radio" name="r1" value="500">under 500<br>

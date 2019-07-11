@@ -6,6 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 
 <script>  
@@ -53,20 +54,24 @@ document.getElementById('amit').innerHTML=val;
 <table cellspacing="3px" cellpadding="10px">
 <tr>
 <c:set var="i" value="${0}"/>
-<c:forEach var="x" items="${items}">
-<c:if test="${i==4}">
-<tr></tr>
-</c:if>
-<td>
+
+<div class="row">
+<c:forEach var="x" items="${sessionScope.items}">
+<div class="col-sm-6">
+<div class="card" >
 <a href="Show?a=${x.pid}&b=${x.pname}&c=${x.milege}&d=${x.price}&e=${x.fileName}">
-<img alt="hii" style="width:50px;height:120px;" src="${x.fileName}"><br>
-&nbsp;&nbsp; ${x.pname}<br>
-&nbsp;&nbsp;${x.price} /day
-</a>
-</td>
-<c:set var="i" value="${i+1}"></c:set>
+  <img src="${x.fileName}" class="card-img-top" alt="Image not Found">
+
+  <div class="card-body">
+    <h5 class="card-title">${x.pname}</h5>
+    <h4 class="card-title">${x.price}</h4>
+  </div>
+ </a>
+ 
+</div>
+</div>
 </c:forEach>
-</tr>
-</table>
+</div>
+
 </body>
 </html>

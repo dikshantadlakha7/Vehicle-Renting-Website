@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<a href="edit.jsp"><input type="button" value="home"></a>
 <form action="addp" method="post" enctype="multipart/form-data" >
   product id<input type="text" name="pr1">
   product name<input type="text" name="pname"><br>

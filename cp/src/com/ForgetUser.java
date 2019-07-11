@@ -3,6 +3,7 @@ package com;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,13 +23,17 @@ Dao d=new Dao();
 		
 		if(!(pass.equals("invalid")))
 		{
-	
-			out.println("value of pass is"+pass);
+			out.println("password  is   "+pass);
+	       RequestDispatcher rs=request.getRequestDispatcher("userlogin.jsp");
+	       rs.include(request, response);
+			
 		}
 		
 		else
 		{
 			out.println("not valid");
+			   RequestDispatcher rs=request.getRequestDispatcher("userlogin.jsp");
+		       rs.include(request, response);
 		}
 	}
 
